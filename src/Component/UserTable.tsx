@@ -36,18 +36,18 @@ export const UserTable = ({ userItem }: UserTableItem) => {
     },
   ];
 
-  const getSort = (path:string , data:User)=>{
-    return path.split('.').reduce((asc,key)=> asc?.[key],data)
-  }
+  const getSort = (path: string, data: User) => {
+    return path.split(".").reduce((asc, key) => asc?.[key], data);
+  };
   const userList = useMemo(() => {
     const orders = order === "asc" ? 1 : -1;
 
-    return [...userItem].sort((a:User,b:User)=>{
-        const first = getSort(sort ,a)
-        const second = getSort(sort ,b)
+    return [...userItem].sort((a: User, b: User) => {
+      const first = getSort(sort, a);
+      const second = getSort(sort, b);
 
-        return first.localeCompare(second) * orders
-    })
+      return first.localeCompare(second) * orders;
+    });
   }, [userItem, order, sort]);
 
   const hanldeClick = (header: string) => {
@@ -60,6 +60,7 @@ export const UserTable = ({ userItem }: UserTableItem) => {
         <tr>
           {cols?.map((item: Table) => (
             <th
+              key={item.label}
               className="border-2 p-2 cursor-pointer"
               onClick={() => hanldeClick(item.key)}
             >
@@ -77,7 +78,7 @@ export const UserTable = ({ userItem }: UserTableItem) => {
           </tr>
         ) : (
           userList.map((item: User) => (
-            <tr>
+            <tr key={item.id}>
               <td className="border-2 p-2 text-center">{item.name}</td>
               <td className="border-2 p-2 text-center">{item.email}</td>
               <td className="border-2 p-2 text-center">{item.address.city}</td>

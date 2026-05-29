@@ -1,15 +1,12 @@
-import { UserPage } from "./Component/UserPage"
-import { UserForm } from "./Component/USerForm"
-import { Routes } from "./Routes"
+import { Routes } from "./Routes";
+import { UserProvider } from "./Context";
 
 function App() {
   return (
-    <div>
-      {/* <UserPage /> */}
+    <UserProvider>
       <Routes />
-      {/* <UserForm /> */}
-    </div>
-  )
+    </UserProvider>
+  );
 }
 
-export default App
+export default App;
